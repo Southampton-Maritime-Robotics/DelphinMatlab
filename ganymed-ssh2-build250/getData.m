@@ -9,6 +9,9 @@ if (input('Download code into logfolder?  (Y/n) ','s')=='Y')
     getCode_str = sprintf('scp -r delphin2@delphin2:~/DelphinROSv3/src/{delphin2_mission,hardware_interfaces,lowlevel_controllers} %s%s',folder, 'Code/');
     system(getCode_str);
 end
+
 importLatestData;
 
-%clear folder
+% plotHeadingPID;
+% plotDepthPitchPID;
+% plotTrace

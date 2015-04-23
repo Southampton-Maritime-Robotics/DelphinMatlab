@@ -78,4 +78,14 @@ try
     load(sprintf('%sdepthandpitchMPC_Log.csv',folder),'\,')
 end
 
+try
+    load(sprintf('%sthrusterLog.csv',folder),'\,')
+end
 
+try
+    load(sprintf('%sIMU_Log.csv',folder),'\,')
+end
+
+try
+    load(sprintf('%sdepthPitchPIDLog.csv',folder),'\,')
+end
