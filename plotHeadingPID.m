@@ -1,3 +1,5 @@
+% function to visualise the performance of the headingPID controller
+
 time_heading = headingPIDLog(:,1);
 heading = headingPIDLog(:,2);
 heading_demand = headingPIDLog(:,4);
@@ -17,28 +19,28 @@ Thruster1_measured = dir1.*Thruster1_measured;
 
 x_max = time_heading(end,1);
 
-subplot(4,1,1); hold on
+subplot(4,1,1); hold on; grid on
 plot(time_heading,heading_demand,'r--')
 plot(time_heading,heading)
 title('heading [deg]')
 xlim([0,x_max])
 legend('heading\_demand','heading\_current')
 
-subplot(4,1,2); hold on
+subplot(4,1,2); hold on; grid on
 plot(time_heading,Thrust_Pterm)
 plot(time_heading,Thrust_Dterm,'r')
 title('thruster demand')
 xlim([0,x_max])
 legend('thrust\_Pgain','thrust\_Dgain')
 
-subplot(4,1,3); hold on
+subplot(4,1,3); hold on; grid on
 plot(time_heading,Thruster0)
 plot(time_heading,Thruster1,'r')
 title('thruster setpoint (saturated)')
 xlim([0,x_max])
 legend('thruster0','thruster1')
 
-subplot(4,1,4); hold on
+subplot(4,1,4); hold on; grid on
 plot(time_thruster,Thruster0_measured)
 plot(time_thruster,-Thruster1_measured,'r')
 title('thruster rpm feedback')

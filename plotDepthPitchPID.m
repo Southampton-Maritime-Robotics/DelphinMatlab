@@ -1,3 +1,5 @@
+% function to visualise the performance of the depthPitchPID controller
+
 time_depth = depthPitchPIDLog(:,1);
 depth = depthPitchPIDLog(:,2);
 depth_demand = depthPitchPIDLog(:,3);
@@ -33,37 +35,49 @@ Thruster1_measured = dir1.*Thruster1_measured;
 %% plot
 figure(1)
 
-subplot(3,1,1); hold on
+subplot(3,1,1); hold on; grid on
 plot(time_depth,depth)
 plot(time_depth,depth_demand,'r--')
+title('depth')
+legend('actual','demand')
 
 subplot(3,1,2); hold on; grid on
 plot(time_depth,Thrust_Pterm)
 plot(time_depth,Thrust_Iterm,'r')
 plot(time_depth,Thrust_Dterm,'k')
 plot(time_depth,Thrust_Sum,'g')
+title('depth controller terms')
+legend('P\_term','I\_term','D\_term','sum')
 
-subplot(3,1,3); hold on
+subplot(3,1,3); hold on; grid on
 plot(time_depth,Thruster0)
 plot(time_depth,Thruster1,'r')
+title('thruster demands')
+legend('front','rear')
 
 figure(2)
 
 subplot(3,1,1); hold on; grid on
 plot(time_depth,pitch)
 plot(time_depth,pitch_demand,'r--')
+title('pitch')
+legend('actual','demand')
 
 subplot(3,1,2); hold on; grid on
 plot(time_depth,Pitch_Pterm)
 plot(time_depth,Pitch_Iterm,'r')
 plot(time_depth,Pitch_Dterm,'k')
 plot(time_depth,cr,'g')
+title('pitch controller terms')
+legend('P\_term','I\_term','D\_term','sum')
 
-subplot(3,1,3); hold on
+subplot(3,1,3); hold on; grid on
 plot(time_depth,Thruster0,'b--')
 plot(time_depth,Thruster1,'r--')
 plot(time_thruster,Thruster0_measured)
 plot(time_thruster,Thruster1_measured,'r')
+title('thruster rpm')
+legend('front','rear')
 
 % figure(3); hold on; grid on
 % 
