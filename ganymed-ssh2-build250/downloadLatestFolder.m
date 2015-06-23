@@ -2,12 +2,12 @@ function [latestFolderPath] = downloadLatestFolder
 
 %Setup and open ssh 
 clear
-hostName = '169.254.51.57';
+hostName = 'delphin2';
 userName = 'delphin2';
 password = '012345';
 command = char('ls ~/.ros/logFiles -t --group-directories-first');
 
-logDir = '/home/delphin2laptop/Delphin_LogFiles/';
+logDir = '~/Delphin_LogFiles/';
 import ch.ethz.ssh2.SCPClient;   %added the .java
 
 try

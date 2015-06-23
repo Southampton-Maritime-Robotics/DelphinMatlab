@@ -7,7 +7,7 @@ if exist('folder', 'var') == 1
 end
 
 if (exist('folder', 'var') ~= 1) || ask == 'n'
-    [filename, folder] = uigetfile('*.csv', 'Select a file in the folder you wish to load', '/home/delphin2laptop/Delphin_LogFiles/');
+    [filename, folder] = uigetfile('*.csv', 'Select a file in the folder you wish to load', '~/Delphin_LogFiles/');
 end
 
 try
@@ -88,4 +88,8 @@ end
 
 try
     load(sprintf('%sdepthPitchPIDLog.csv',folder),'\,')
+end
+
+try
+    load(sprintf('%sdepthLog.csv',folder),'\,')
 end
