@@ -7,7 +7,7 @@ userName = 'delphin2';
 password = '012345';
 command = char('ls ~/.ros/logFiles -t --group-directories-first');
 
-logDir = '~/Delphin_LogFiles/';
+logDir = ['~/Delphin_LogFiles/'];
 import ch.ethz.ssh2.SCPClient;   %added the .java
 
 try
@@ -68,38 +68,13 @@ else
     kk = 1;
 end
 
-
 for k = kk:length(files)
         file = sprintf('%s/%s',latest, char(files(k)));
         fprintf('Downloading %s, File %d of %d \n',char(files(k)),k-1,length(files)-1)
-        scp1.get(file,logFolder);
-    
+%         scp1.get(file,logFolder); % old command to get the file; 
+%         replaced since it will not work with the relative path
+        cmd = ['sshpass -p ', password, ' scp -r delphin2@delphin2:',file,' ',logFolder];
+        system(cmd);
 end
-
-% altimeterLog      = sprintf('%s/altimeterLog.csv',latest);
-% gpsLog            = sprintf('%s/gpsLog.csv',latest);
-% sonarLog          = sprintf('%s/sonarLog.csv',latest);
-% tslHorz           = sprintf('%s/tslHorzLog.csv',latest);
-% tslVertLog        = sprintf('%s/tslVertLog.csv',latest);
-% compassLog        = sprintf('%s/compassLog.csv',latest);
-% tailLog           = sprintf('%s/altimeterLog.csv',latest);
-% positionLog       = sprintf('%s/positionLog.csv',latest);
-% depthcontrolLog   = sprintf('%s/depthcontrolLog.csv',latest);
-% headingcontrolLog = sprintf('%s/headingcontrolLog.csv',latest);
-% depthandpitchMPCLog = sprintf('%s/depthandpitchMPCLog.csv',latest);
-% 
-% %Get files
-% scp1 = SCPClient(channel);
-% scp1.get(altimeterLog,logFolder);
-% scp1.get(gpsLog,logFolder);
-% scp1.get(sonarLog,logFolder);
-% scp1.get(tslHorz,logFolder);
-% scp1.get(tslVertLog,logFolder);
-% scp1.get(compassLog,logFolder);
-% scp1.get(tailLog,logFolder);
-% scp1.get(positionLog,logFolder);
-% scp1.get(depthcontrolLog,logFolder);
-% scp1.get(headingcontrolLog,logFolder);
-% scp1.get(depthandpitchMPCLog,logFolder);
 
 latestFolderPath = logFolder;
