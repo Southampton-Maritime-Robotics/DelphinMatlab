@@ -2,11 +2,17 @@ warning 'off'
 sshfrommatlabinstall;
 folder = downloadLatestFolder;
 
-if (input('Download code into logfolder?  (Y/n) ','s')=='Y')
+if (input('Download code into logfolder?  (y/n) ','s')=='y')
 % Make code folder
-    system(sprintf('mkdir %s%s',folder,'Code/'));
-    getCode_str = sprintf('scp -r delphin2@delphin2:~/DelphinROSv3/src/{delphin2_mission,hardware_interfaces,lowlevel_controllers} %s%s',folder, 'Code/');
+    password = '012345';
+    
+    if exist([folder,'Code/']) == 0
+        system(sprintf('mkdir %s%s',folder,'Code/'));
+    end
+    
+    getCode_str = sprintf('sshpass -p %s scp -r delphin2@delphin2:~/DelphinROSv3/src/. %s%s',password, folder, 'Code/');
     system(getCode_str);
+
 end
 
 importLatestData;
