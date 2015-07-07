@@ -3,8 +3,8 @@
 %% specify key reference points
 % North pier of the Eastleigh lake (50.957024,-1.366769)
 O = [-2,2];
-A = [-28,12];
-B = [-1,64];
+A = [-28,-20];
+B = [-1,50];
 M = (A+B)/2;
 % South pier of the Eastleigh lake (50.956473,-1.366835)
 % O = [-2,2];
