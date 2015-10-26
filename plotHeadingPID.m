@@ -9,13 +9,9 @@ Thrust_Dterm = headingPIDLog(:,24);
 Thruster0 = headingPIDLog(:,26);
 Thruster1 = headingPIDLog(:,27);
 
-time_thruster = thrusterLog(:,1);
-Thruster0_measured = thrusterLog(:,8);
-Thruster1_measured = thrusterLog(:,9);
-dir0 = sign(thrusterLog(:,4));
-dir1 = sign(thrusterLog(:,5));
-Thruster0_measured = dir0.*Thruster0_measured;
-Thruster1_measured = dir1.*Thruster1_measured;
+CS_Pterm = headingPIDLog(:,14);
+CS_Dterm = headingPIDLog(:,16);
+CS_demand = headingPIDLog(:,17);
 
 x_max = time_heading(end,1);
 
@@ -31,18 +27,22 @@ plot(time_heading,Thrust_Pterm)
 plot(time_heading,Thrust_Dterm,'r')
 title('thruster demand')
 xlim([0,x_max])
-legend('thrust\_Pgain','thrust\_Dgain')
+ylim([-1,1]*3e5)
+legend('thrust\_Pterm','thrust\_Dterm')
 
 subplot(4,1,3); hold on; grid on
 plot(time_heading,Thruster0)
 plot(time_heading,Thruster1,'r')
 title('thruster setpoint (saturated)')
 xlim([0,x_max])
+ylim([-1,1]*2e3)
 legend('thruster0','thruster1')
 
 subplot(4,1,4); hold on; grid on
-plot(time_thruster,Thruster0_measured)
-plot(time_thruster,-Thruster1_measured,'r')
-title('thruster rpm feedback')
+plot(time_heading,CS_Pterm)
+plot(time_heading,CS_Dterm,'r')
+plot(time_heading,CS_demand,'k')
+title('control surface demand')
 xlim([0,x_max])
-legend('thruster0','thruster1')
+ylim([-1,1]*35)
+legend('cs\_Pterm','cs\_Dterm','cs\_demand')
