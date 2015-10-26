@@ -67,14 +67,6 @@ try
 end
 
 try
-    load(sprintf('%sForceAndMomentLog.csv',folder),'\,')
-end
-
-try
-    load(sprintf('%srate_gyroLog.csv',folder),'\,')
-end
-
-try
     load(sprintf('%sdepthandpitchMPC_Log.csv',folder),'\,')
 end
 
@@ -83,13 +75,17 @@ try
 end
 
 try
-    load(sprintf('%sIMU_Log.csv',folder),'\,')
-end
-
-try
     load(sprintf('%sdepthPitchPIDLog.csv',folder),'\,')
 end
 
 try
     load(sprintf('%sdepthLog.csv',folder),'\,')
+end
+
+try
+    load(sprintf('%sdepthPitchMPCLog.csv',folder),'\,')
+end
+
+try
+    load(sprintf('%senergyLog.csv',folder),'\,')
 end
