@@ -17,12 +17,18 @@ Pitch_Iterm = depthPitchPIDLog(:,28);
 Pitch_Dterm = depthPitchPIDLog(:,29);
 cr = depthPitchPIDLog(:,30);
 
+pitchBias = depthPitchPIDLog(:,15);
+pitchBias_Pterm = depthPitchPIDLog(:,17).*depthPitchPIDLog(:,4);
+pitchBias_Iterm = depthPitchPIDLog(:,45).*depthPitchPIDLog(:,46);
+pitchBias_Dterm = depthPitchPIDLog(:,43).*depthPitchPIDLog(:,6);
+
 Thruster0 = depthPitchPIDLog(:,33);
 Thruster1 = depthPitchPIDLog(:,34);
 
-Ltf = depthPitchPIDLog(:,43);
-Ltr = depthPitchPIDLog(:,44);
-crNose = depthPitchPIDLog(:,45);
+cs_Pterm = depthPitchPIDLog(:,39);
+cs_Iterm = depthPitchPIDLog(:,40);
+cs_Dterm = depthPitchPIDLog(:,41);
+cs_demand = depthPitchPIDLog(:,42);
 
 time_thruster = thrusterLog(:,1);
 Thruster0_measured = thrusterLog(:,6);
@@ -32,55 +38,90 @@ dir1 = sign(thrusterLog(:,3));
 Thruster0_measured = dir0.*Thruster0_measured;
 Thruster1_measured = dir1.*Thruster1_measured;
 
+x_min = 0;
+x_max = time_thruster(end);
+
 %% plot
 figure(1)
 
-subplot(3,1,1); hold on; grid on
+subplot(4,1,1); hold on; grid on
 plot(time_depth,depth)
 plot(time_depth,depth_demand,'r--')
 title('depth')
 legend('actual','demand')
+xlim([x_min, x_max])
 
-subplot(3,1,2); hold on; grid on
+subplot(4,1,2); hold on; grid on
 plot(time_depth,Thrust_Pterm)
 plot(time_depth,Thrust_Iterm,'r')
 plot(time_depth,Thrust_Dterm,'k')
 plot(time_depth,Thrust_Sum,'g')
-title('depth controller terms')
+title('depth controller terms (thrusters)')
 legend('P\_term','I\_term','D\_term','sum')
+xlim([x_min, x_max])
 
-subplot(3,1,3); hold on; grid on
+subplot(4,1,3); hold on; grid on
 plot(time_depth,Thruster0)
 plot(time_depth,Thruster1,'r')
 title('thruster demands')
 legend('front','rear')
+xlim([x_min, x_max])
+
+subplot(4,1,4); hold on; grid on
+plot(tailLog(:,1),tailLog(:,10))
+try
+    plot(depthPitchPIDLog(:,1),depthPitchPIDLog(:,44))
+catch
+    disp('Error: no such speed information')
+end
+title('propeller demand/ surge velocity')
+xlim([x_min, x_max])
 
 figure(2)
 
-subplot(3,1,1); hold on; grid on
+subplot(4,1,1); hold on; grid on
 plot(time_depth,pitch)
-plot(time_depth,pitch_demand,'r--')
+plot(time_depth,pitch_demand-pitchBias,'r--')
 title('pitch')
 legend('actual','demand')
+xlim([x_min, x_max])
 
-subplot(3,1,2); hold on; grid on
+subplot(4,1,2); hold on; grid on
 plot(time_depth,Pitch_Pterm)
 plot(time_depth,Pitch_Iterm,'r')
 plot(time_depth,Pitch_Dterm,'k')
 plot(time_depth,cr,'g')
-title('pitch controller terms')
+title('pitch controller terms (thrusters)')
 legend('P\_term','I\_term','D\_term','sum')
+xlim([x_min, x_max])
 
-subplot(3,1,3); hold on; grid on
-plot(time_depth,Thruster0,'b--')
-plot(time_depth,Thruster1,'r--')
-plot(time_thruster,Thruster0_measured)
-plot(time_thruster,Thruster1_measured,'r')
-title('thruster rpm')
-legend('front','rear')
+subplot(4,1,3); hold on; grid on
+plot(time_depth,cs_Pterm)
+plot(time_depth,cs_Iterm,'r')
+plot(time_depth,cs_Dterm,'k')
+plot(time_depth,cs_demand,'g')
+title('pitch controller terms (control surfaces)')
+ylim([-1,1]*90)
+legend('P\_term','I\_term','D\_term','sum')
+xlim([x_min, x_max])
 
-% figure(3); hold on; grid on
-% 
-% plot(time_depth,Ltf,'b')
-% plot(time_depth,Ltr,'r')
-% plot(time_depth,crNose,'g')
+subplot(4,1,4); hold on; grid on
+plot(tailLog(:,1),tailLog(:,10),'--k')
+plot(time_depth,pitchBias,'k')
+plot(time_depth,pitchBias_Pterm,'r')
+plot(time_depth,pitchBias_Iterm,'g')
+plot(time_depth,pitchBias_Dterm,'b')
+title('pitchBias terms/ propeller demand')
+xlim([x_min, x_max])
+
+figure; 
+subplot(4,1,1); hold on; grid on
+plot(energyLog(:,1),energyLog(:,3))
+plot(energyLog(:,1),energyLog(:,4))
+subplot(4,1,2); hold on; grid on
+plot(energyLog(:,1),energyLog(:,5))
+plot(energyLog(:,1),energyLog(:,6))
+subplot(4,1,3); hold on; grid on
+plot(energyLog(:,1),energyLog(:,7))
+subplot(4,1,4); hold on; grid on
+plot(energyLog(:,1),energyLog(:,8))
