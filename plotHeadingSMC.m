@@ -1,9 +1,5 @@
 % function to visualise the performance of the headingPID controller
 
-close all
-clear all
-clc
-load('headingSMCLog.csv')
 timeVector = headingSMCLog(:,1);
 heading = headingSMCLog(:,2); %  deg
 yawRate = headingSMCLog(:,3); % rad/s
