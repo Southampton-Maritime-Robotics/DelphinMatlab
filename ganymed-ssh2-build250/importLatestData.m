@@ -89,3 +89,11 @@ end
 try
     load(sprintf('%senergyLog.csv',folder),'\,')
 end
+
+try
+    load(sprintf('%sheadingSMCLog.csv',folder),'\,')
+end
+
+try
+    load(sprintf('%sheadingPID_ctrlAllo_Log.csv',folder),'\,')
+end
