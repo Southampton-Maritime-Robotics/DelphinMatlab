@@ -1,14 +1,5 @@
-clear all;
-clc;
-
 timeStart = 90;
 headingInit = 190;
-
-caseName = 'ZigZag_manoeuvre_cs';
-
-load([caseName,'/','compassLog.csv'])
-load([caseName,'/','tailLog.csv'])
-load([caseName,'/','thrusterLog.csv'])
 
 timeCompass = compassLog(:,1)-timeStart;
 heading = compassLog(:,2)-headingInit;
@@ -21,7 +12,8 @@ timeThruster = thrusterLog(:,1)-timeStart;
 demand_th = thrusterLog(:,4);
 
 figure(1); clf; hold on;
-plot(timeCompass,heading)
-plot(timeTail,demand_cs)
-plot(timeThruster,demand_th/1800*30)
+plot(timeCompass,heading,'k--')
+plot(timeTail,demand_cs,'r')
+plot(timeThruster,demand_th/1800*30,'g')
 xlim([-20,100])
+legend('heading','u_{cs}','u_{th}')

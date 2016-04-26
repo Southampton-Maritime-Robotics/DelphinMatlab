@@ -1,8 +1,8 @@
 % function to plot the result obtain from lake trial
 % close all
-clear all
-clc
-load positionLog.csv
+% clear all
+% clc
+% load positionLog.csv
 
 % TODO
 % plot image
@@ -17,7 +17,7 @@ B = [-1,50];
 M = (A+B)/2;
 
 % 1: A,B,M,O, 2: S-shaped path, 3: lawn mowing path
-caseID = 1;
+caseID = 3;
 
 r = 3; % circle of acceptance for waypoint switching criteria
 
