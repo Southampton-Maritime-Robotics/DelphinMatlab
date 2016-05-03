@@ -1,3 +1,4 @@
+clear % clear all parameter in the workspace
 warning 'off'
 sshfrommatlabinstall;
 folder = downloadLatestFolder;
