@@ -44,12 +44,12 @@ h2 = 0.01*h1;
 for i = 1:length(x2)
     x1(i) = -h2/h1*x2(i);
 end
-figure(2); hold on;
+figure(2); clf; hold on;
 % subplot(2,1,1); hold on;
 plot(x2,x1*180/pi,'r--')
 plot(heading_error,(yawRate-yawRateDemand)*180/pi)
 title('Phase Portrait')
 xlabel('$\tilde{\psi}$ heading error [deg]','Interpreter','latex')
 ylabel('$\tilde{r}$ [rad/s]','Interpreter','latex')
-ylim([-30, 30])
+ylim([-15, 15])
 legend('sliding surface','trajedtory')
