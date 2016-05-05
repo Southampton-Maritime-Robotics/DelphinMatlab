@@ -18,24 +18,44 @@ u_th = headingSMCLog(:,15);
 
 % plot response
 figure(1); clf; hold on;
-subplot(5,1,1); hold on; grid on
+subplot(3,2,1); hold on; grid on
+ylim([0,1.2])
+xlim([0,xMax])
 ylabel({'$u$ [m/s]'},'Interpreter','latex')
 plot(timeVector,forwardVel)
-subplot(5,1,2); hold on; grid on
+
+subplot(3,2,3); hold on; grid on
 ylabel('$\psi$ [deg]','Interpreter','latex')
+ylim([200,360])
+xlim([0,xMax])
 plot(timeVector,heading)
 plot(timeVector,heading_demand,'--r')
-% legend('actual','demand','Location','SouthEast')
-subplot(5,1,3); hold on; grid on
+
+subplot(3,2,5); hold on; grid on
 ylabel('$r$ [rad/s]','Interpreter','latex')
+ylim([-0.5,0.5])
+xlim([0,xMax])
 plot(timeVector,yawRate)
 plot(timeVector,yawRateDemand,'--r')
-subplot(5,1,4); hold on; grid on
+xlabel('time [sec]','Interpreter','latex')
+
+subplot(3,2,2); hold on; grid on
+plot(timeVector, N_eq+N_sw)
+ylim([-28,28])
+xlim([0,xMax])
+ylabel('$N$ [N.m]','Interpreter','latex')
+
+subplot(3,2,4); hold on; grid on
 plot(timeVector,u_R)
+xlim([0,xMax])
 ylabel('$\delta_{R}$','Interpreter','latex')
-subplot(5,1,5); hold on; grid on
+
+subplot(3,2,6); hold on; grid on
 plot(timeVector,u_th)
+plot(timeVector,-u_th,'r')
 ylabel('u$_{th}$','Interpreter','latex')
+xlabel('time [sec]','Interpreter','latex')
+xlim([0,xMax])
 
 % plot phase portrait
 x2 = min(heading_error):0.1:max(heading_error);

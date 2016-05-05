@@ -16,24 +16,43 @@ Thruster1 = headingPID_ctrlAllo_Log(:,13);
 controller_onOff = headingPID_ctrlAllo_Log(:,14);
 
 figure(1); clf; hold on;
-subplot(4,1,1); hold on; grid on
+subplot(3,2,1); hold on; grid on
+ylim([0,1.2])
+xlim([0,xMax])
+ylabel({'$u$ [m/s]'},'Interpreter','latex')
+plot(time_heading,forwardVel)
+
+subplot(3,2,3); hold on; grid on
 plot(time_heading,heading_demand,'r--')
 plot(time_heading,heading)
-title('heading [deg]')
-legend('heading\_demand','heading\_current')
+ylim([200,360])
+xlim([0,xMax])
+ylabel('$\psi$ [deg]','Interpreter','latex')
 
-subplot(4,1,2); hold on; grid on
-plot(time_heading,N_Pterm)
-plot(time_heading,N_Dterm,'r')
-title('thruster demand')
-legend('thrust\_Pterm','thrust\_Dterm')
+subplot(3,2,5); hold on; grid on
+ylabel('$r$ [rad/s]','Interpreter','latex')
+ylim([-0.5,0.5])
+xlim([0,xMax])
+plot(time_heading,yawRate)
+xlabel('time [sec]','Interpreter','latex')
 
-subplot(4,1,3); hold on; grid on
+subplot(3,2,2); hold on; grid on
+plot(time_heading,N_Pterm+N_Dterm)
+ylim([-28,28])
+xlim([0,xMax])
+ylabel('$N$ [N.m]','Interpreter','latex')
+
+subplot(3,2,4); hold on; grid on
+plot(time_heading,CS_demand)
+ylabel('$\delta_{R}$','Interpreter','latex')
+ylim([-32,32])
+xlim([0,xMax])
+xlabel('time [sec]')
+
+subplot(3,2,6); hold on; grid on
 plot(time_heading,Thruster0)
 plot(time_heading,Thruster1,'r')
-title('thruster setpoint (saturated)')
-legend('thruster0','thruster1')
-
-subplot(4,1,4); hold on; grid on
-plot(time_heading,CS_demand)
-title('control surface demand')
+ylim([-2600,2600])
+xlim([0,xMax])
+ylabel('u$_{th}$','Interpreter','latex')
+% legend('thruster0','thruster1')
