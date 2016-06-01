@@ -114,14 +114,14 @@ xlim([x_min, x_max])
 % % % % title('pitchBias terms/ propeller demand')
 % % % % xlim([x_min, x_max])
 
-% figure; 
-% subplot(4,1,1); hold on; grid on
-% plot(energyLog(:,1),energyLog(:,3))
-% plot(energyLog(:,1),energyLog(:,4))
-% subplot(4,1,2); hold on; grid on
-% plot(energyLog(:,1),energyLog(:,5))
-% plot(energyLog(:,1),energyLog(:,6))
-% subplot(4,1,3); hold on; grid on
-% plot(energyLog(:,1),energyLog(:,7))
-% subplot(4,1,4); hold on; grid on
-% plot(energyLog(:,1),energyLog(:,8))
+% % % % figure; 
+% % % % subplot(4,1,1); hold on; grid on
+% % % % plot(energyLog(:,1),energyLog(:,3))
+% % % % plot(energyLog(:,1),energyLog(:,4))
+% % % % subplot(4,1,2); hold on; grid on
+% % % % plot(energyLog(:,1),energyLog(:,5))
+% % % % plot(energyLog(:,1),energyLog(:,6))
+% % % % subplot(4,1,3); hold on; grid on
+% % % % plot(energyLog(:,1),energyLog(:,7))
+% % % % subplot(4,1,4); hold on; grid on
+% % % % plot(energyLog(:,1),energyLog(:,8))

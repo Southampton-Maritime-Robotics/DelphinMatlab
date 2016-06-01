@@ -15,6 +15,8 @@ Thruster0 = headingPID_ctrlAllo_Log(:,12);
 Thruster1 = headingPID_ctrlAllo_Log(:,13);
 controller_onOff = headingPID_ctrlAllo_Log(:,14);
 
+xMax = time_heading(end);
+
 figure(1); clf; hold on;
 subplot(3,2,1); hold on; grid on
 ylim([0,1.2])
@@ -25,7 +27,7 @@ plot(time_heading,forwardVel)
 subplot(3,2,3); hold on; grid on
 plot(time_heading,heading_demand,'r--')
 plot(time_heading,heading)
-ylim([200,360])
+ylim([0,360])
 xlim([0,xMax])
 ylabel('$\psi$ [deg]','Interpreter','latex')
 

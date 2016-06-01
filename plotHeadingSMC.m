@@ -16,6 +16,8 @@ N_sw = headingSMCLog(:,13);
 u_R = headingSMCLog(:,14);
 u_th = headingSMCLog(:,15);
 
+xMax = timeVector(end);
+
 % plot response
 figure(1); clf; hold on;
 subplot(3,2,1); hold on; grid on
@@ -26,7 +28,7 @@ plot(timeVector,forwardVel)
 
 subplot(3,2,3); hold on; grid on
 ylabel('$\psi$ [deg]','Interpreter','latex')
-ylim([200,360])
+ylim([0,360])
 xlim([0,xMax])
 plot(timeVector,heading)
 plot(timeVector,heading_demand,'--r')
