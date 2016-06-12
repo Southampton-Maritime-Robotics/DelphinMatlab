@@ -1,12 +1,12 @@
-if exist('folder', 'var') == 1
-    ask = input('Load current folder? (y/n)    ', 's');
-    
-    if ask == 'y'
-        folder = folder;
-    end
-end
+% % % % if exist('folder', 'var') == 1
+% % % %     ask = input('Load current folder? (y/n)    ', 's');
+% % % %     
+% % % %     if ask == 'y'
+% % % %         folder = folder;
+% % % %     end
+% % % % end
 
-if (exist('folder', 'var') ~= 1) || ask == 'n'
+if (exist('folder', 'var') ~= 1) %  || ask == 'n'
     [filename, folder] = uigetfile('*.csv', 'Select a file in the folder you wish to load', '~/Delphin_LogFiles/');
 end
 
