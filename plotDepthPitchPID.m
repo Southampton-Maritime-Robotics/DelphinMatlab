@@ -77,42 +77,42 @@ end
 title('propeller demand/ surge velocity')
 xlim([x_min, x_max])
 
-% % % % figure(2)
-% % % % 
-% % % % subplot(4,1,1); hold on; grid on
-% % % % plot(time_depth,pitch)
-% % % % plot(time_depth,pitch_demand-pitchBias,'r--')
-% % % % title('pitch')
-% % % % legend('actual','demand')
-% % % % xlim([x_min, x_max])
-% % % % 
-% % % % subplot(4,1,2); hold on; grid on
-% % % % plot(time_depth,Pitch_Pterm)
-% % % % plot(time_depth,Pitch_Iterm,'r')
-% % % % plot(time_depth,Pitch_Dterm,'k')
-% % % % plot(time_depth,cr,'g')
-% % % % title('pitch controller terms (thrusters)')
-% % % % legend('P\_term','I\_term','D\_term','sum')
-% % % % xlim([x_min, x_max])
-% % % % 
-% % % % subplot(4,1,3); hold on; grid on
-% % % % plot(time_depth,cs_Pterm)
-% % % % plot(time_depth,cs_Iterm,'r')
-% % % % plot(time_depth,cs_Dterm,'k')
-% % % % plot(time_depth,cs_demand,'g')
-% % % % title('pitch controller terms (control surfaces)')
-% % % % ylim([-1,1]*90)
-% % % % legend('P\_term','I\_term','D\_term','sum')
-% % % % xlim([x_min, x_max])
-% % % % 
-% % % % subplot(4,1,4); hold on; grid on
-% % % % plot(tailLog(:,1),tailLog(:,10),'--k')
-% % % % plot(time_depth,pitchBias,'k')
-% % % % plot(time_depth,pitchBias_Pterm,'r')
-% % % % plot(time_depth,pitchBias_Iterm,'g')
-% % % % plot(time_depth,pitchBias_Dterm,'b')
-% % % % title('pitchBias terms/ propeller demand')
-% % % % xlim([x_min, x_max])
+figure(2)
+
+subplot(4,1,1); hold on; grid on
+plot(time_depth,pitch)
+plot(time_depth,pitch_demand-pitchBias,'r--')
+title('pitch')
+legend('actual','demand')
+xlim([x_min, x_max])
+
+subplot(4,1,2); hold on; grid on
+plot(time_depth,Pitch_Pterm)
+plot(time_depth,Pitch_Iterm,'r')
+plot(time_depth,Pitch_Dterm,'k')
+plot(time_depth,cr,'g')
+title('pitch controller terms (thrusters)')
+legend('P\_term','I\_term','D\_term','sum')
+xlim([x_min, x_max])
+
+subplot(4,1,3); hold on; grid on
+plot(time_depth,cs_Pterm)
+plot(time_depth,cs_Iterm,'r')
+plot(time_depth,cs_Dterm,'k')
+plot(time_depth,cs_demand,'g')
+title('pitch controller terms (control surfaces)')
+ylim([-1,1]*90)
+legend('P\_term','I\_term','D\_term','sum')
+xlim([x_min, x_max])
+
+subplot(4,1,4); hold on; grid on
+plot(tailLog(:,1),tailLog(:,10),'--k')
+plot(time_depth,pitchBias,'k')
+plot(time_depth,pitchBias_Pterm,'r')
+plot(time_depth,pitchBias_Iterm,'g')
+plot(time_depth,pitchBias_Dterm,'b')
+title('pitchBias terms/ propeller demand')
+xlim([x_min, x_max])
 
 % % % % figure; 
 % % % % subplot(4,1,1); hold on; grid on
