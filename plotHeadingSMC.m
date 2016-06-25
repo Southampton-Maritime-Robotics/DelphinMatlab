@@ -15,6 +15,7 @@ N_eq = headingSMCLog(:,12);
 N_sw = headingSMCLog(:,13);
 u_R = headingSMCLog(:,14);
 u_th = headingSMCLog(:,15);
+sw_int = headingSMCLog(:,16);
 
 xMax = timeVector(end);
 
@@ -54,24 +55,28 @@ ylabel('$\delta_{R}$','Interpreter','latex')
 
 subplot(3,2,6); hold on; grid on
 plot(timeVector,u_th)
-plot(timeVector,-u_th,'r')
+% plot(timeVector,-u_th,'r')
 ylabel('u$_{th}$','Interpreter','latex')
 xlabel('time [sec]','Interpreter','latex')
 xlim([0,xMax])
 
 % plot phase portrait
+figure(2); clf; hold on;
+% subplot(2,1,1); hold on;
 x2 = min(heading_error):0.1:max(heading_error);
 h1 = 1;
 h2 = 0.01*h1;
 for i = 1:length(x2)
     x1(i) = -h2/h1*x2(i);
 end
-figure(2); clf; hold on;
-% subplot(2,1,1); hold on;
+
 plot(x2,x1*180/pi,'r--')
 plot(heading_error,(yawRate-yawRateDemand)*180/pi)
 title('Phase Portrait')
 xlabel('$\tilde{\psi}$ heading error [deg]','Interpreter','latex')
-ylabel('$\tilde{r}$ [rad/s]','Interpreter','latex')
-ylim([-15, 15])
+ylabel('$\tilde{r}$ [deg/s]','Interpreter','latex')
+ylim([-30, 30])
 legend('sliding surface','trajedtory')
+
+% subplot(2,1,2) ; hold on;
+% plot(timeVector, sw_int)
